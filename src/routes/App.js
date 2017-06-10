@@ -4,7 +4,8 @@ import {
     Route
 } from 'react-router-dom'
 import Home from './Home/index.jsx'
-import SignIn from './SignIn/index.jsx'
+import SignIn from './SignIn/SignIn.js'
+import SignUp from './SignIn/SignUp.js'
 import { Main } from '../styles/main'
 
 const App = () => (
@@ -12,6 +13,7 @@ const App = () => (
         <Main>
             <Route exact path="/" component={ Home }/>
             <Route path="/SignIn" component={ SignIn }/>
+            <Route path="/SignUp" component={ SignUp }/>
         </Main>
     </Router>
 )

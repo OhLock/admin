@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import classnames from 'classnames'
 import { Button as ButtonStyle } from './style'
 
 function trim (str, is_global) {
@@ -17,29 +16,24 @@ export default class Button extends Component {
         super(props)
     }
     render () {
-        const {type, size, prefixCls, onClick, style} = this.props
-        const context = <span>{trim(this.props.children)}</span>
-        const className = classnames(prefixCls, {
-            [`${prefixCls}-${type}`]: type,
-            [`${prefixCls}-${size}`]: size
-        })
+        const { onClick, style, primary, loading } = this.props
+        const context = <span>{ trim(this.props.children) }</span>
         return (
-            <ButtonStyle style={style} className={className} onClick={ onClick }>{context}</ButtonStyle>
+            <ButtonStyle loading={ loading } primary={ primary } style={ style } onClick={ onClick }>
+                { loading ? 'loading' : context }
+            </ButtonStyle>
         )
     }
 }
 
 Button.propTypes = {
-    prefixCls: PropTypes.string,
-    type: PropTypes.string,
+    primary: PropTypes.bool,
     size: PropTypes.string,
     style: PropTypes.object,
     onClick: PropTypes.func,
-    children: PropTypes.any
+    children: PropTypes.any,
+    loading: PropTypes.bool,
 }
 Button.defaultProps = {
-    type: '',
-    size: '',
-    prefixCls:  'btn',
     onClick: () => {}
 }
